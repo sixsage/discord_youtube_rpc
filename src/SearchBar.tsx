@@ -1,10 +1,21 @@
-interface PropExample {
-	num: number;
-	num2: number;
+import { useRef } from "react";
+
+interface SearchBarProperties {
+	setSongUrl: (arg0: string) => void;
 }
 
-function SearchBar(props: PropExample) {
-	return <div> { props.num + props.num2 } </div>;
+function SearchBar(props: SearchBarProperties) {
+	const inputElement = useRef<HTMLInputElement>(null);
+
+	function updateSongUrl(event: React.KeyboardEvent<HTMLInputElement>): void {
+		if (event.key === "Enter") {
+			props.setSongUrl(inputElement.current?.value ?? "");
+		}
+	}
+
+	return <div>
+		<input ref={inputElement} type={"search"} onKeyDown={updateSongUrl}></input>
+	</div>
 }
 
 export default SearchBar;
