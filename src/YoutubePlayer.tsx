@@ -1,19 +1,14 @@
-import { ForwardedRef, forwardRef, useImperativeHandle, useRef } from "react";
-import { Ref } from "./App";
+import { useEffect, useRef } from "react";
 
-const YoutubePlayer = forwardRef<Ref, {}>((props: {}, ref: ForwardedRef<Ref>) => {
+function YoutubePlayer(props: { songUrls: string[] } ) {
     const headerRef = useRef<HTMLHeadingElement>(null);
-    
-    const changeHeaderContent = (songUrl: string): void => {
+
+    useEffect(() => {
         if (!headerRef.current) { return; }
-        headerRef.current.innerText = songUrl;
-    };
+        headerRef.current.innerText = props.songUrls.join("\n");
+    });
 
-    useImperativeHandle(ref, () => ({ changeHeaderContent }));
-
-    return <div>
-        <h1 ref={headerRef}></h1>
-    </div>
-})
+    return <div><h1 ref={headerRef}></h1></div>
+}
 
 export default YoutubePlayer;

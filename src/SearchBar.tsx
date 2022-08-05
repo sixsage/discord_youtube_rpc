@@ -1,7 +1,8 @@
 import { useRef } from "react";
 
 interface SearchBarProperties {
-	setSongUrl: (arg0: string) => void;
+	songUrls: string[];
+	setSongUrl: (arg0: string[]) => void;
 }
 
 function SearchBar(props: SearchBarProperties) {
@@ -9,7 +10,8 @@ function SearchBar(props: SearchBarProperties) {
 
 	function updateSongUrl(event: React.KeyboardEvent<HTMLInputElement>): void {
 		if (event.key === "Enter") {
-			props.setSongUrl(inputElement.current?.value ?? "");
+			if (!inputElement.current || inputElement.current.value.length === 0) { return; }
+			props.setSongUrl(props.songUrls.concat(inputElement.current.value));
 		}
 	}
 

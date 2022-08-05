@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import SearchBar from "./SearchBar";
 import YoutubePlayer from "./YoutubePlayer";
 
@@ -7,17 +7,11 @@ export interface Ref {
 }
 
 function App() {
-	const [songUrl, setSongUrl] = useState("");
-	const youtubePlayerRef = useRef<Ref>(null);
-
-	useEffect(() => {
-		if (!youtubePlayerRef.current) { return; }
-		youtubePlayerRef.current.changeHeaderContent(songUrl);
-	});
+	const [songUrls, setSongUrl] = useState([""]);
 
 	return <div>
-		<SearchBar setSongUrl={setSongUrl} />
-		<YoutubePlayer ref={youtubePlayerRef} />
+		<SearchBar songUrls={songUrls} setSongUrl={setSongUrl} />
+		<YoutubePlayer songUrls={songUrls} />
 	</div> 
 }
 
