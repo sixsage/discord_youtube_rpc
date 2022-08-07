@@ -1,5 +1,5 @@
 import { useState } from "react";
-import YoutubePlayer from "./YoutubePlayer";
+import Player from "./Player";
 import SearchBar from "./SearchBar";
 import "./WebApp.css";
 
@@ -12,7 +12,7 @@ function WebApp() {
                 <SearchBar songUrls={songUrls} setSongUrl={setSongUrl} />
             </div>
             <div className="youtube-player-container">
-		        <YoutubePlayer songUrls={songUrls} />
+		        <Player songUrls={songUrls} />
             </div>
 	    </div> 
     );

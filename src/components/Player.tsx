@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-function YoutubePlayer(props: { songUrls: string[] } ) {
+function Player(props: { songUrls: string[] } ) {
     const headerRef = useRef<HTMLHeadingElement>(null);
 
     useEffect(() => {
@@ -11,4 +11,4 @@ function YoutubePlayer(props: { songUrls: string[] } ) {
     return <div><h1 ref={headerRef}></h1></div>
 }
 
-export default YoutubePlayer;
+export default Player;
