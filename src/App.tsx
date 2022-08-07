@@ -1,14 +1,8 @@
-import { useState } from "react";
-import SearchBar from "./SearchBar";
-import YoutubePlayer from "./YoutubePlayer";
+import WebApp from "./components/WebApp";
+import "./App.css";
 
 function App() {
-	const [songUrls, setSongUrl] = useState([""]);
-
-	return <div>
-		<SearchBar songUrls={songUrls} setSongUrl={setSongUrl} />
-		<YoutubePlayer songUrls={songUrls} />
-	</div> 
+	return <div id="app"><WebApp /></div>
 }
 
 export default App;
