@@ -12,6 +12,7 @@ function SearchBar(props: SearchBarProperties) {
 		if (event.key === "Enter") {
 			if (!inputElement.current || inputElement.current.value.length === 0) { return; }
 			props.setSongUrl(props.songUrls.concat(inputElement.current.value));
+			inputElement.current.value = '';
 		}
 	}
 

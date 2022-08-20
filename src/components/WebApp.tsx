@@ -12,7 +12,7 @@ function WebApp() {
                 <SearchBar songUrls={songUrls} setSongUrl={setSongUrl} />
             </div>
             <div className="youtube-player-container">
-		        <Player songUrls={songUrls} />
+		        <Player songUrls={songUrls} setSongUrl={setSongUrl} />
             </div>
 	    </div> 
     );
