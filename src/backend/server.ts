@@ -7,10 +7,10 @@ config()
 const app: Express = express();
 const PORT = 3000;
 
-async function youtubePlaylistApi() {
+async function youtubePlaylistApi(playlistId: string) {
     const { YOUTUBE_API_KEY } = process.env;
     const defaultUrl: string = `https://www.googleapis.com/youtube/v3/playlistItems?` +
-    `key=${YOUTUBE_API_KEY}&part=snippet&maxResults=50&playlistId=PLCnkz7la5RxOzT8OjGQ4Hsa-mnc3gsPyx`;
+    `key=${YOUTUBE_API_KEY}&part=snippet&maxResults=50&playlistId=${playlistId}`;
     const headers: RequestInit = {
         method: 'GET'
     };
@@ -20,6 +20,6 @@ async function youtubePlaylistApi() {
 app.use(express.json());
 app.use(cors());
 app.listen(PORT)
-app.get('/', async (request, response): Promise<void> => {
-    response.send(await youtubePlaylistApi())
+app.get('/:playlistId', async (request, response): Promise<void> => {
+    response.send(await youtubePlaylistApi(request.params.playlistId))
 })
