@@ -2,6 +2,20 @@ import { useEffect, useRef } from "react";
 import YouTube from "react-youtube";
 import { SetStateFunc } from "../global-types";
 
+async function getVideoInfo(e: any, videoId: string) {
+	const headers: RequestInit = {
+		method: "POST",
+		headers: {
+			Accept: "application/json",
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({
+			videoId,
+		}),
+	};
+	const response: Response = await fetch("http://localhost:3000/videoInfo", headers);
+}
+
 function Player(props: { songUrls: string[]; setSongUrl: SetStateFunc<string[]> }) {
 	const { songUrls, setSongUrl } = props;
 	if (!songUrls[0] && songUrls.length) {
@@ -20,13 +34,18 @@ function Player(props: { songUrls: string[]; setSongUrl: SetStateFunc<string[]> 
 	}
 
 	function removeFrontSong(e: any) {
-		console.log(e.data);
-		console.log(e.target.getVolume());
 		setSongUrl(songUrls.slice(1));
-		console.log(songUrls);
 	}
-	console.log(songUrls);
-	return <YouTube videoId={songUrls[handleInitialState()]} onEnd={removeFrontSong} opts={opts} />;
+	return (
+		<YouTube
+			videoId={songUrls[handleInitialState()]}
+			onPlay={(e: any) => {
+				getVideoInfo(e, songUrls[handleInitialState()]);
+			}}
+			onEnd={removeFrontSong}
+			opts={opts}
+		/>
+	);
 }
 
 export default Player;

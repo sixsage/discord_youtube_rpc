@@ -53,7 +53,6 @@ async function getIDsFromUrl(inputUrl: string, videos: string[], setVideos: SetS
 		});
 		if (videoId) {
 			videoIds = videoIds.splice(videoIds.indexOf(videoId)).concat(videoIds);
-			console.log(videoIds);
 			setVideos(videos.concat(videoIds));
 		} else {
 			setVideos(videos.concat(videoIds));

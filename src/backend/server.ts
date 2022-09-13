@@ -1,6 +1,8 @@
 import express, { Express } from "express";
 import cors from "cors";
 import { config } from "dotenv";
+import { setActivity } from "./rpc.js";
+import { getVideoDetails } from "./youtube-video-api.js";
 
 config();
 
@@ -19,8 +21,14 @@ async function youtubePlaylistApi(playlistId: string) {
 }
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.listen(PORT);
 app.get("/playlist/:playlistId", async (request, response): Promise<void> => {
 	response.send(await youtubePlaylistApi(request.params.playlistId));
+});
+app.post("/videoInfo", async (request, response): Promise<void> => {
+	const { videoId } = request.body;
+	setActivity(await getVideoDetails({ reference: videoId, type: "id" }), videoId as string);
+	response.status(200).send({ message: "good request" });
 });

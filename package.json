@@ -1,31 +1,33 @@
 {
-  "name": "discord_youtube_rpc",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "concurrently \"vite --host\" \"node --loader ts-node/esm ./src/backend/server.ts\"",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^16.0.1",
-    "express": "^4.18.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-youtube": "^9.0.3"
-  },
-  "devDependencies": {
-    "@types/cors": "^2.8.12",
-    "@types/express": "^4.17.13",
-    "@types/react": "^18.0.15",
-    "@types/react-dom": "^18.0.6",
-    "@types/react-youtube": "^7.10.0",
-    "@vitejs/plugin-react": "^2.0.0",
-    "concurrently": "^7.3.0",
-    "ts-node": "^10.9.1",
-    "typescript": "^4.6.4",
-    "vite": "^3.0.0"
-  }
+	"name": "discord_youtube_rpc",
+	"private": true,
+	"version": "0.0.0",
+	"type": "module",
+	"scripts": {
+		"dev": "concurrently \"vite --host\" \"node --loader ts-node/esm ./src/backend/server.ts\" \"node --loader ts-node/esm ./src/backend/rpc.ts\"",
+		"build": "tsc && vite build",
+		"preview": "vite preview"
+	},
+	"dependencies": {
+		"cors": "^2.8.5",
+		"discord-rpc": "^4.0.1",
+		"dotenv": "^16.0.1",
+		"express": "^4.18.1",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"react-youtube": "^9.0.3"
+	},
+	"devDependencies": {
+		"@types/cors": "^2.8.12",
+		"@types/discord-rpc": "^4.0.3",
+		"@types/express": "^4.17.13",
+		"@types/react": "^18.0.15",
+		"@types/react-dom": "^18.0.6",
+		"@types/react-youtube": "^7.10.0",
+		"@vitejs/plugin-react": "^2.0.0",
+		"concurrently": "^7.3.0",
+		"ts-node": "^10.9.1",
+		"typescript": "^4.6.4",
+		"vite": "^3.0.0"
+	}
 }
