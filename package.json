@@ -1,7 +1,7 @@
 {
 	"name": "discord_youtube_rpc",
 	"private": true,
-	"version": "0.0.0",
+	"version": "1.0.0",
 	"type": "module",
 	"scripts": {
 		"dev": "concurrently \"vite --host\" \"node --loader ts-node/esm ./src/backend/server.ts\" \"node --loader ts-node/esm ./src/backend/rpc.ts\"",
